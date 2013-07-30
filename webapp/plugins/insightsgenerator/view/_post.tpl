@@ -59,7 +59,7 @@
                 </h3>
                 <div class="post">
                     {if $post->network == 'youtube'}
-                        {$post->title}
+                        {$post->post_text}
                         <iframe id="ytplayer" type="text/html" width="427" height="260" src="http://www.youtube.com/embed/{$post->post_id}"frameborder="0"/>
                     {else}
                         {$post->post_text}
