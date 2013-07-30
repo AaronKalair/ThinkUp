@@ -8,7 +8,7 @@
         <div class="pull-right detail-btn"><a href="{$site_root_path}post/?v=geoencoder_map&t={$post->post_id}&n=twitter"><button class="btn btn-info btn-mini detail-btn" ><i class="icon-map-marker icon-white"></i></button></a></div>
     {/if}
 
-    <span class="label label-{if $i->emphasis eq '1'}info{elseif $i->emphasis eq '2'}success{elseif $i->emphasis eq '3'}error{else}info{/if}"><i class="icon-white icon-{$icon}"></i> <a href="?u={$i->instance->network_username}&n={$i->instance->network}&d={$i->date|date_format:'%Y-%m-%d'}&s={$i->slug}">{$i->prefix}</a></span> 
+    <span class="label label-{if $i->emphasis eq '1'}info{elseif $i->emphasis eq '2'}success{elseif $i->emphasis eq '3'}error{else}info{/if}"><i class="icon-white icon-{$icon}"></i> <a href="?u={$i->instance->network_username}&n={$i->instance->network}&d={$i->date|date_format:'%Y-%m-%d'}&s={$i->slug}">{$i->prefix}</a></span>
         <i class="icon-{$i->instance->network}{if $i->instance->network eq 'google+'} icon-google-plus{/if} icon-muted"></i>
         {$i->text|link_usernames_to_twitter}
 {/if}
@@ -31,7 +31,7 @@
                               {if $unit eq 'km'}
                                 {$post->reply_retweet_distance|number_format} kms away
                                 {else}
-                                {$post->reply_retweet_distance|number_format} miles away in 
+                                {$post->reply_retweet_distance|number_format} miles away in
                               {/if}
                           {/if}
                           {if $post->location}
@@ -58,8 +58,13 @@
                     {if $post->other.total_likes}<small style="color:gray">{$post->other.total_likes|number_format} likes</small>{/if}
                 </h3>
                 <div class="post">
-                    {$post->post_text}
-                    {if $post->network == 'foursquare'}From {$post->location}{/if}
+                    {if $post->network == 'youtube'}
+                        {$post->title}
+                        <iframe id="ytplayer" type="text/html" width="427" height="260" src="http://www.youtube.com/embed/{$post->post_id}"frameborder="0"/>
+                    {else}
+                        {$post->post_text}
+                        {if $post->network == 'foursquare'}From {$post->location}{/if}
+                    {/if}
             {/if}
 
             {if $post->link->expanded_url}
