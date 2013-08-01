@@ -58,13 +58,12 @@
                     {if $post->other.total_likes}<small style="color:gray">{$post->other.total_likes|number_format} likes</small>{/if}
                 </h3>
                 <div class="post">
+                    {$post->post_text}
                     {if $post->network == 'youtube'}
-                        {$post->post_text}
+                        <br>
                         <iframe id="ytplayer" type="text/html" width="427" height="260" src="http://www.youtube.com/embed/{$post->post_id}"frameborder="0"/>
-                    {else}
-                        {$post->post_text}
-                        {if $post->network == 'foursquare'}From {$post->location}{/if}
                     {/if}
+                    {if $post->network == 'foursquare'}From {$post->location}{/if}
             {/if}
 
             {if $post->link->expanded_url}
